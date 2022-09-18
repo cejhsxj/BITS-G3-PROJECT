@@ -1,11 +1,142 @@
 <!DOCTYPE html>
 <head></head>
-<body>
+<body onload="initial()">
     <h1 style="text-align: center; font-family:monospace;">Online Credit Card Donation</h1>
-    <img src="./images/credit-card-pay.jpeg" style="height:auto; width: 49%;">
-    <img src="./images/online-pay.png" style="height:auto; width: 49%;">
-    <a href="index.html">
-        <button style="padding: 20px; margin-left:2%; font-size:x-large;">Cancel</button>
-        <button style="padding: 20px; margin-left:61.8%; font-size:x-large;">Donate</button>
-    </a>
+    <h3>Donation received! Do you want to see what people said? <a href="news.html">Click me.</a></h3>
+    <div id="div1">
+        <img src="./images/credit-card-pay.jpeg">
+    </div>
+    <div id="div2">
+        <h2>Fund already raised for poor students:<br> $<span id="total"></span></h2>
+        <form>
+            <label>First Name:</label>
+            <input type="text" required id="fn"><br><br>
+            <label>Second Name:</label>
+            <input type="text" required id="sn"><br><br>
+
+            <label class="checkboxArea">
+                <input type="checkbox" name="cbes" onclick="addTen()">$10
+            </label>
+            <label class="checkboxArea">
+                <input type="checkbox" name="cbes" onclick="addFifty()">$20
+            </label>
+            <label class="checkboxArea">
+                <input type="checkbox" name="cbes" onclick="addTwoH()">$50
+            </label><br><br>
+            <label>  Amount: </label><span id="amountShow"></span><br><br>
+            <label>Pay Method</label>
+            <select>
+                <option>Credit Card</option>
+                <option>Debit Card</option>
+                <option>Checks</option>
+                <option>Bank Transfer</option>
+            </select>
+        </form>
+    </div>
+    <div style="float: right;">
+        <button onclick="change()">Donate</button>
+        <a href="index.html">
+            <button>Cancel</button>
+        </a>
+    </div>
+    <script>
+        var amount = 0;
+        var total = 369400;
+        function initial(){
+            document.getElementById("total").innerHTML = total;
+        }
+
+        function addTen(){
+            amount += 10;    
+            document.getElementsByClassName("checkboxArea")[0].style.background = "pink";
+            document.getElementById("amountShow").innerHTML = amount;
+        }
+        function addFifty(){
+            amount += 20;    
+            document.getElementsByClassName("checkboxArea")[1].style.background = "pink";
+            document.getElementById("amountShow").innerHTML = amount;
+        }
+        function addTwoH(){
+            amount += 50;    
+            document.getElementsByClassName("checkboxArea")[2].style.background = "pink";
+            document.getElementById("amountShow").innerHTML = amount;
+        }
+        function change(){
+            fn = document.getElementById('fn').value;
+            sn = document.getElementById('sn').value;
+            
+            alert("Thank you, " + fn + " " + sn + ". " + amount + " donated!");
+            total += amount;
+            amount = "";
+            document.getElementsByTagName('h3')[0].style.display = "inline";
+            document.getElementById("total").innerHTML = total;
+            document.getElementById("amountShow").innerHTML = amount;
+        }
+    </script>
+    <style>
+        h3{
+            display: none;
+            color: green;
+        }
+        img{
+            height:auto; 
+            width: 750px;
+        }
+        h2{
+            font-family: fantasy;
+            font-size: xx-large;
+        }
+        span{
+            color: red;
+            font-size: xx-large;
+        }
+        body{
+            background-image: url(./images/body_background.gif);
+        }
+        #div1{
+            display: inline;
+            float: left;
+        }
+        #div2{
+            display: inline;
+            float: center;
+            margin-left: 100px;
+        }
+        form{
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+
+        .checkboxArea{
+            margin-left: 10px;
+            background: greenyellow;
+            font-weight: bolder;
+            font-size: larger;
+            padding-top: 13px;
+            padding-bottom: 13px;
+            padding-left: 5px;
+            padding-right: 5px;
+            text-align: center;
+            border: 4px solid black;
+            border-radius: 7%;
+            box-shadow: grey 5px 5px;
+        }
+        
+        input[type="checkbox"]{
+            visibility: hidden;
+        }
+        
+        button{
+            padding: 9px;
+            color: white;
+            background-color: black;
+            font-size: large;
+            font-weight: bold;
+            display:inline-block;
+            border: 4px solid black;
+            border-radius: 15%;
+            box-shadow: grey 5px 5px;
+
+        }
+    </style>
 </body>
